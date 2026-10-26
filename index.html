@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My School Project</title>
+    <style>
+        :root {
+            --bg-color: #f0f7ff;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --accent-color: #3498db;
+            --shadow: rgba(52, 152, 219, 0.15);
+        }
+
+        .dark-theme {
+            --bg-color: #1a252f;
+            --card-bg: #2c3e50;
+            --text-color: #ecf0f1;
+            --accent-color: #1abc9c;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px var(--shadow);
+            transition: transform 0.2s, background-color 0.4s;
+            z-index: 1000;
+        }
+        .theme-toggle:hover { transform: scale(1.1); }
+
+        header { 
+            background: linear-gradient(135deg, #74b9ff, #a29bfe); 
+            color: #fff; 
+            text-align: center; 
+            padding: 3.5rem 1rem; 
+            animation: fadeInDown 0.8s ease-out;
+        }
+        header h1 { margin: 0; font-size: 2.8rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header p { margin: 10px 0 0 0; font-style: italic; opacity: 0.9; font-size: 1.2rem; }
+
+        .container { max-width: 700px; margin: 30px auto; padding: 0 15px 50px 15px; }
+
+        section { 
+            background: var(--card-bg); 
+            padding: 30px; 
+            margin-bottom: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 20px var(--shadow); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.4s; }
+        section:nth-child(3) { animation-delay: 0.6s; }
+
+        h2 { color: var(--accent-color); margin-top: 0; border-bottom: 2px solid var(--bg-color); padding-bottom: 8px; }
+        
+        img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 12px; 
+            display: block; 
+            margin: 20px 0; 
+            transition: transform 0.4s ease;
+        }
+        img:hover { transform: scale(1.02); }
+
+        ul { padding-left: 0; list-style: none; }
+        li { 
+            background: var(--bg-color); 
+            margin-bottom: 10px; 
+            padding: 12px 15px; 
+            border-radius: 8px; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent-color);
+        }
+        li:hover { transform: translateX(8px); background: var(--accent-color); color: white; }
+        li.checked { text-decoration: line-through; opacity: 0.6; background: #ffeaa7; color: #000; border-left-color: #fdcb6e; }
+
+        .quote { 
+            font-style: italic; 
+            background: linear-gradient(90deg, var(--bg-color), transparent); 
+            padding: 15px; 
+            border-left: 5px solid var(--accent-color); 
+            border-radius: 4px; 
+            margin: 20px 0; 
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Change Theme</button>
+
+    <header>
+        <h1>Welcome to My School</h1>
+        <p></p>
+    </header>
+
+    <div class="container">
+        
+        <section>
+            <h2>About Our School</h2>
+            <p>Welcome to our school website. This is a big and modern building where students get useful knowledge every day.</p>
+            <p>The main building has three floors, comfortable corridors, and many wide windows that let in a lot of sunlight.</p>
+            <p>Inside, we have well-equipped classrooms for different subjects, a large computer lab, a gymnasium for physical education, and a clean canteen with delicious food.</p>
+            
+            <img src="https://avatars.mds.yandex.net/get-altay/14031726/2a000001932f767d014599405f8d56bf41c7/L_height" alt="My School Building">
+        </section>
+
+        <section>
+            <h2>School Life & Rules</h2>
+            <p>Our lessons start early in the morning, and students have a busy but interesting daily routine. After hard work in class, we have small breaks to chat with friends.</p>
+            <p>To keep our school a safe and organized place, we follow strict but fair rules every day.</p>
+            <p style="font-size: 0.9rem; color: #7f8c8d;">💡 <em>Tip: Click on a rule to cross it out!</em></p>
+            <ul>
+                <li onclick="toggleRule(this)">Be on time for all lessons.</li>
+                <li onclick="toggleRule(this)">Wear the correct school uniform.</li>
+                <li onclick="toggleRule(this)">Respect your teachers and classmates.</li>
+                <li onclick="toggleRule(this)">Do not use mobile phones during classes.</li>
+                <li onclick="toggleRule(this)">Keep the classrooms clean and tidy.</li>
+                <li onclick="toggleRule(this)">Always do your homework.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Activities & Education</h2>
+            <p>Education here is not only about lessons and marks. After classes, our school offers many interesting out-of-class activities and hobbies.</p>
+            <p>Students can join popular sports clubs, take part in music lessons, or prepare projects for different school events and traditional holidays.</p>
+            
+            <div class="quote">
+                <p>"I think that education is the key to a bright future."</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        function toggleRule(element) {
+            element.classList.toggle('checked');
+        }
+    </script>
+
+</body>
+</html>
